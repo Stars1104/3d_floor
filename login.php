@@ -18,7 +18,7 @@ if(!empty($_POST)) {
 		// $_SESSION['User']['Username'] = $checkRecord[0]->Username;
         
         if($_POST['Username'] == 'admin' && $_POST['Password'] == 'revenger'){
-            $_SESSION['User']['ID'] = 'admin';
+            $_SESSION['User']['ID'] = '1';
             $_SESSION['User']['Username'] = `revenger`;
             
             @header('location:'.HTTP_PATH.'home');

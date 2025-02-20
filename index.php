@@ -22,8 +22,9 @@
     
     // $_SESSION['User']['ID'] = 1;
     
-    $info = $db->db_select("objects",array("*"),"WHERE user_id='".$_SESSION['User']['ID']."'");
-    // echo "hello world"
+    // $info = $db->db_select("objects",array("*"),"WHERE user_id='".$_SESSION['User']['ID']."'");
+    $info = $db->db_select("objects",array("*"));
+
     $thumb_path = "";
     $obj_html   = "";
     $my_objs    = array();
@@ -32,9 +33,9 @@
     {
 		foreach($info as $eachInfo)
         {
-            // $thumb_path = "objs/".$eachInfo->name."/";
+            $thumb_path = "objs/".$eachInfo->name."/";
 			$obj_html .= '<li info="'.$eachInfo->id.'" tool="image" twod="'.$eachInfo->two_obj.'" title="'.$eachInfo->descr.'" thrd="'.$eachInfo->three_obj.'" size="'.$eachInfo->size.'">';
-			$obj_html .= '<img src="objs/black_square_table/'.$eachInfo->thumb_img.'" /></li>';
+			$obj_html .= '<img src="'.$thumb_path.$eachInfo->thumb_img.'" /></li>';
 
             // array_push($my_objs, $eachInfo->name);
 		}

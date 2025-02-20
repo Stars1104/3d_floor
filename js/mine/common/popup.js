@@ -192,6 +192,7 @@ var popupObj 	= function()
 					append_id += $(this).attr("info") + ",";
 				});
 
+
 				$.ajax(
 				{
 					type: "POST",
@@ -227,31 +228,33 @@ var popupObj 	= function()
 					return;
 				}
 
-				if($("#add_object").find(".content_part:nth-child(2)").find("p").children("span").length == 0)
-				{
-					alert("Please select Thumbnail!");
-					return;
-				}
+				// if($("#add_object").find(".content_part:nth-child(2)").find("p").children("span").length == 0)
+				// {
+				// 	alert("Please select Thumbnail!");
+				// 	return;
+				// }
 
-				if($("#add_object").find(".content_part:nth-child(3)").find("p").children("span").length == 0)
-				{
-					alert("Please select 2D Image!");
-					return;
-				}
+				// if($("#add_object").find(".content_part:nth-child(3)").find("p").children("span").length == 0)
+				// {
+				// 	alert("Please select 2D Image!");
+				// 	return;
+				// }
 
-				if($("#add_object").find(".content_part:nth-child(4)").find("p").children("span").length == 0)
-				{
-					alert("Please select 3D Object!");
-					return;
-				}
+				// if($("#add_object").find(".content_part:nth-child(4)").find("p").children("span").length == 0)
+				// {
+				// 	alert("Please select 3D Object!");
+				// 	return;
+				// }
 
-				if($("#add_object").find(".content_part:nth-child(5)").find("p").children("span").length == 0)
-				{
-					alert("Please select 3D Material!");
-					return;
-				}
+				// if($("#add_object").find(".content_part:nth-child(5)").find("p").children("span").length == 0)
+				// {
+				// 	alert("Please select 3D Material!");
+				// 	return;
+				// }
 
 				html += mtl;
+
+				console.log(`😀😀😀${html}`)
 
 				$.ajax(
 				{
