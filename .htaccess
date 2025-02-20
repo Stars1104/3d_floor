@@ -1,0 +1,26 @@
+Options +FollowSymLinks
+
+RewriteEngine on
+
+RewriteBase /3d_floor/
+
+DirectoryIndex login login.php
+
+RewriteRule home index.php
+
+RewriteRule index index.php
+
+RewriteRule logout logout.php
+
+RewriteRule login login.php
+
+RewriteRule ^(.+)$/ $1.php
+
+RewriteRule ^(php|tmp|theme|style|img|js) - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^php\/ - [L]
+
+
+

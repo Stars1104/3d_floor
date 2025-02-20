@@ -1,0 +1,205 @@
+<div id="overlay_image" class="popup">
+	<div class="overlay_title"><span>Add Image</span><img src="img/close.png" width="20px;" class="overlay_close" /></div>
+	<div class="overlay_body">
+    	<p>Please Input URL or UPLOAD one image to use. </p>
+        
+        <div class="upload_area">
+            <div id="url_area">
+                <span>Image URL: </span><input type="text" id="img_url">
+                <a href="#" id="btn_useimage">Preview</a>
+            </div>
+            <form name="form" method="POST" enctype="multipart/form-data">
+            	<input type="file" name="fileToUpload" id="fileToUpload"/><a href="#" id="upload_btn">Upload File</a>
+                <img id="loading" src="img/loading.gif" style="">
+            </form>
+        </div>
+         
+         <div class="preview_area"></div>
+
+         <br />
+        <center><input type="button" class="overlay_add" id="btn_addimg"  value="Add"/></center>
+    </div>
+</div>
+
+<div id="loading_area" class="popup">
+    <center>
+        <img src="img/loading.gif"/>
+        <span>Loading 3D modelings...</span>
+    </center>
+    <center>
+        <span id="s_load">10</span>/<span id="s_total">10</span>
+    </center>
+    <div id="progress_bar">
+        <div id="complete"></div>
+    </div>
+</div>
+
+<div id="creat_project" class="popup">
+    <div class="overlay_title">
+        <span>Create New Project</span>
+        <img src="img/close.png" width="20px;" class="overlay_close" />
+    </div>
+    <div class="overlay_body">
+        <div class="upload_area">
+            <div id="url_area">
+                <span>Title: </span><input type="text" id="project_title">
+            </div>
+            <textarea id="project_descr"></textarea>            
+        </div>
+        <center><input type="button" class="overlay_add" id="btn_addprj" value="Save"/></center>
+    </div>
+</div>
+
+<div id="open_project" class="popup">
+    <div class="overlay_title">
+        <span>Load Project</span>
+        <img src="img/close.png" width="20px;" class="overlay_close" />
+    </div>
+    <div class="overlay_body">
+        <div class="upload_area">
+            <div id="url_area">
+                <span>Project: </span>
+                <select id="project_list">
+                    <option>First Project</option>
+                    <option>Second Project</option>
+                    <option>Third Project</option>
+                </select>
+                <span id="last_updated">(Last Updated : _)</span>
+            </div>
+            <textarea id="view_pdescr" disabled></textarea>            
+        </div>
+        <center><input type="button" class="overlay_add" id="btn_selprj" value="Open"/></center>
+    </div>
+</div>
+
+<div id="add_object" class="popup">
+    <div class="overlay_title">
+        <span>Add New Object</span>
+        <img src="img/close.png" width="20px;" class="overlay_close" />
+    </div>
+    <div class="overlay_body">
+        <div class="upload_area no-border">
+            <div id="option_area">
+                <h3>Please select mode to add.</h3>
+                <ul>
+                    <li><label><input type="radio" name="create_mode" value="append" checked>Append to you from existing objects</label></li>
+                    <li><label><input type="radio" name="create_mode" value="create">Create new object</label></li>
+                </ul>
+                <center>
+                    <input type="button" id="btn_select_mode" value="OK">
+                </center>
+            </div>
+            <div id="display_area">
+                <div id="append_new">
+                    <div class="content_part">
+                        <!-- <dd><font color='red'>*</font>OBJ List:<br><span>(Object List)</span></dd>
+                        <select>
+                            <option value="test1">Object1</option>
+                            <option value="test2">Object2</option>
+                            <option value="test3">Object3</option>
+                        </select> -->
+                        <h3>Object List</h3>
+                        <div id="object_list">
+                            <table>
+                                <?php echo $all_html; ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="create_new">
+                    <div class="content_part">
+                        <dd><font color='red'>*</font>OBJ Name:<br><span>(Description)</span></dd>
+                        <input type="text" id="obj_name">
+                    </div>
+                    <div class="content_part">
+                        <dd><font color='red'>*</font>Thumbnail:<br><span>(*.png,*.jpg)</span></dd>
+
+                        <input class="obj_upload" type="file" name="files[]">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <div class="files"></div>
+                    </div>
+
+                    <div class="content_part">
+                        <dd><font color='red'>*</font>2D Image:<br><span>(*.png,*.jpg)</span></dd>
+
+                        <input class="obj_upload" type="file" name="files[]">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <div class="files"></div>
+                    </div>
+
+                    <div class="content_part">
+                        <dd><font color='red'>*</font>3D Object:<br><span>(*.obj)</span></dd>
+
+                        <input class="obj_upload" type="file" name="files[]">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <div class="files"></div>
+                    </div>
+
+                    <div class="content_part">
+                        <dd><font color='red'>*</font>3D Material:<br><span>(*.mtl)</span></dd>
+
+                        <input class="obj_upload" type="file" name="files[]">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <div class="files"></div>
+                    </div>
+
+                    <div class="content_part">
+                        <dd>3D Patterns:<br><span>(*.png,*.jpg)</span></dd>
+                        
+                        <input class="obj_upload" type="file" name="files[]" multiple>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+
+                        <div id="files" class="files"></div>
+                    </div>
+                    <form id="save_obj_form" method="POST">
+                        <input type="hidden" id="thumb" name="thumb">
+                        <input type="hidden" id="obj_2d" name="obj_2d">
+                        <input type="hidden" id="obj_3d" name="obj_3d">
+
+                        <div class="content_part">
+                            <dd><font color='red'>*</font>OBJ Width:<br><span>(metre)</span></dd>
+                            <input type="text" id="obj_width">
+                        </div>
+                        <div class="content_part">
+                            <dd><font color='red'>*</font>OBJ Height:<br><span>(metre)</span></dd>
+                            <input type="text" id="obj_height">
+                        </div>
+                    </form>
+                </div>
+
+                <center><input type="button" class="overlay_add" id="btn_addnew" value="Add Object"/></center>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="save_project" class="popup">
+    <div class="overlay_title">
+        <span>Save As Project</span>
+        <img src="img/close.png" width="20px;" class="overlay_close" />
+    </div>
+    <div class="overlay_body">
+        <div class="upload_area">
+            <div id="url_area">
+                <span>Project: </span>
+                <select id="sproject_list">
+                    <option>First Project</option>
+                    <option>Second Project</option>
+                    <option>Third Project</option>
+                </select>
+            </div>
+            <textarea id="save_pdescr"></textarea>            
+        </div>
+        <center><input type="button" class="overlay_add" id="btn_saveprj" value="Open"/></center>
+    </div>
+</div>
