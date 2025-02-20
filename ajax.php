@@ -3,7 +3,7 @@
 	$mode 	= $_POST['mode'];
 	$db 	= new DBAccess();
 	$uid 	= $_SESSION['User']['ID'];
-	$max_countRes = $db->get_info_arr("users","UserId='".$uid."'");
+	// $max_countRes = $db->get_info_arr("users","UserId='".$uid."'");
 	switch ($mode)
 	{
 		case 'create_project':
@@ -58,16 +58,27 @@
 			
 			$data_arr 	= explode(",", $_POST['data']);
 			$dir 		= $data_arr[4];
-			$mtls 		= explode(";",$data_arr[7]);
+			// $mtls 		= explode(";",$data_arr[7]);
 
-			if(file_exists("objs/".$dir))
-			{
-				$ret_arr['mode'] 	= 'error';
-				$ret_arr['msg'] 	= 'The name is already exist, Please input another name!';
+			// if(file_exists("objs/".$dir))
+			// {
+			// 	$ret_arr['mode'] 	= 'error';
+			// 	$ret_arr['msg'] 	= 'The name is already exist, Please input another name!';
 				
-				echo json_encode($ret_arr);
-				return;
-			}
+			// 	echo json_encode($ret_arr);
+			// 	return;
+			// }
+			// map.png,White_chir.jpeg,Chir_whiteMap.obj,Chir_whiteMap.mtl,asdfasf,4,4
+
+
+			$dbhost = 'localhost';
+			$dbname = 'floor';
+			$username = 'root';
+			$password = '';
+
+			$conn = new mysqli($dbhost, $username, $password, $dbname);
+			// $sql = "INSERT INTO users (user_id, thumb_img, two_obj,three_obj, three_mtl, name, size)
+			// VALUES ($uid, $data_arr[0], $data_arr[1], $data_arr[2],$data_arr[3], $data_arr[4], $data_arr[5].$data_arr[6])";
 
 			$sql  = "INSERT INTO objects SET ";
 			$sql .= " user_id='".$uid."'";
@@ -77,26 +88,27 @@
 			$sql .= ", three_mtl='".$data_arr[3]."'";
 			$sql .= ", name='".$data_arr[4]."'";
 			$sql .= ", size='".$data_arr[5].",".$data_arr[6]."'";
-
-			$db->run_sql($sql);
-
-			mkdir("objs/".$dir);
 			
-			rename("tmp/".$data_arr[0],"objs/".$dir."/".$data_arr[0]);
-			rename("tmp/".$data_arr[1],"objs/".$dir."/".$data_arr[1]);
-			rename("tmp/".$data_arr[2],"objs/".$dir."/".$data_arr[2]);
-			rename("tmp/".$data_arr[3],"objs/".$dir."/".$data_arr[3]);
+			$conn->query($sql);
+			// $db->run_sql($sql);
 
-			for($i = 0; $i < count($mtls); $i++)		
-			{
-				if($mtls[$i] == "" || $mtls[$i] == null || $mtls[$i] == "null") 
-					continue;
+			// mkdir("objs/".$dir);
+			
+			// rename("tmp/".$data_arr[0],"objs/".$dir."/".$data_arr[0]);
+			// rename("tmp/".$data_arr[1],"objs/".$dir."/".$data_arr[1]);
+			// rename("tmp/".$data_arr[2],"objs/".$dir."/".$data_arr[2]);
+			// rename("tmp/".$data_arr[3],"objs/".$dir."/".$data_arr[3]);
 
-				rename("tmp/".$mtls[$i],"objs/".$dir."/".$mtls[$i]);
-			}
+			// for($i = 0; $i < count($mtls); $i++)		
+			// {
+			// 	if($mtls[$i] == "" || $mtls[$i] == null || $mtls[$i] == "null") 
+			// 		continue;
+
+			// 	rename("tmp/".$mtls[$i],"objs/".$dir."/".$mtls[$i]);
+			// }
 
 			$ret_arr['mode'] 	= 'success';
-			$ret_arr['msg'] 	= mysql_insert_id();
+			$ret_arr['msg'] 	=`Unknown ERROR!`;
 			
 			echo json_encode($ret_arr);
 			break;

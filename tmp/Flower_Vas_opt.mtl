@@ -1,0 +1,120 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 05.04.2014 09:21:34
+
+newmtl anturium
+	Ns 49.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.8910 0.8910 0.8910
+	Ke 0.0000 0.0000 0.0000
+	map_Ka outUV_flower_pink.jpg
+	map_Kd outUV_flower_pink.jpg
+
+newmtl geybaras
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.1530 0.1530 0.1530
+	Ke 0.0000 0.0000 0.0000
+	map_Ka outUV_gerbera.jpg
+	map_Kd outUV_gerbera.jpg
+
+newmtl bloom
+	Ns 26.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.1710 0.1710 0.1710
+	Ke 0.0000 0.0000 0.0000
+	map_Ka outUV_bloom.jpg
+	map_Kd outUV_bloom.jpg
+
+newmtl leaf
+	Ns 41.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.4500 0.4500 0.4500
+	Ke 0.0000 0.0000 0.0000
+	map_Ka outUV_leaf.jpg
+	map_Kd outUV_leaf.jpg
+
+newmtl stick
+	Ns 15.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.1620 0.1620 0.1620
+	Ke 0.0000 0.0000 0.0000
+
+newmtl liquid
+	Ns 67.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 0.0000 0.7529
+	Kd 1.0000 0.0000 0.7529
+	Ks 0.7110 0.7110 0.7110
+	Ke 0.0000 0.0000 0.0000
+
+newmtl wire_134006006
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5255 0.0235 0.0235
+	Kd 0.5255 0.0235 0.0235
+	Ks 0.3500 0.3500 0.3500
+
+newmtl rose_pink
+	Ns 24.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.1980 0.1980 0.1980
+	Ke 0.0000 0.0000 0.0000
+	map_Ka outUV_rose_pink.jpg
+	map_Kd outUV_rose_pink.jpg
+
+newmtl yellow_rose
+	Ns 24.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.1980 0.1980 0.1980
+	Ke 0.0000 0.0000 0.0000
+	map_Ka outUV_rose_yellow.jpg
+	map_Kd outUV_rose_yellow.jpg

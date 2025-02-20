@@ -97,44 +97,50 @@ var initEnv			= function()
 	this.initUploadFile = function()
 	{
 		var url = 'multi.php';
+				
 
-		$('.obj_upload').fileupload(
-		{
-			url: url,
-			dataType: 'json',
-			done: function (data)
-			{
-				console.log(`😎😎😎${JSON.stringify(data)}`)
-				var obj = this;
+		// $('#first_upload_file').fileupload(
+		// 	{
+		// 		url: url,
+		// 		dataType: 'json',
+		// 		done: function (data)
+		// 		{
+		// 		// var obj = this;
+		// 		// $.each(data.result.files, function (file)
+		// 		// {
 
-				$.each(data.result.files, function (file)
-				{
-			    	if($(obj).parent().find(".files").find("p").length > 0)
-			    	{
-			    		var file_names = $(obj).parent().find(".files").children("p").html();
+		// 		// 	console.log(`😎😎😎 ====🚀`, JSON.stringify(data));
+				
 
-			    		$(obj).parent().find(".files").children("p").html(file_names + ", <span>" + file.name + "</span>");
-			    	}
-			    	else
-			    	{
-			    		$(obj).parent().find(".files").append("<p><span>" + file.name + "</span></p>");
-			    	}
-			    });
+		// 	    // 	if($(obj).parent().find(".files").find("p").length > 0)
+		// 	    // 	{
+		// 	    // 		var file_names = $(obj).parent().find(".files").children("p").html();
 
-			    $(this).parent().find('.progress').css('display','none');
-			},	
-			progressall: function (data)
-			{
-				var progress = parseInt(data.loaded / data.total * 100, 10);
+		// 	    // 		$(obj).parent().find(".files").children("p").html(file_names + ", <span>" + file.name + "</span>");
+		// 	    // 	}
+		// 	    // 	else
+		// 	    // 	{
+		// 	    // 		$(obj).parent().find(".files").append("<p><span>" + file.name + "</span></p>");
+		// 	    // 	}
+		// 	    // });
 
-				$(this).parent().find('.progress').css('display','block');
-				$(this).parent().find('.progress-bar').css(
-					'width',
-					progress + '%'
-				);
-			}
-		}).prop('disabled', !$.support.fileInput)
-		.parent().addClass($.support.fileInput ? undefined : 'disabled');
+		// 	    // $(this).parent().find('.progress').css('display','none');
+		// 	},
+
+		// 	progressall: function (data)
+		// 	{
+		// 		console.log(`😴😴😴 ====🚀`, JSON.stringify(this));
+				
+		// 		var progress = parseInt(data.loaded / data.total * 100, 10);
+
+		// 		$(this).parent().find('.progress').css('display','block');
+		// 		$(this).parent().find('.progress-bar').css(
+		// 			'width',
+		// 			progress + '%'
+		// 		);
+		// 	}
+		// }).prop('disabled', !$.support.fileInput)
+		// .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
 		// $('#fileupload').fileupload(
 		// {

@@ -42,7 +42,7 @@
 
 		function run_sql($sql)
 		{
-			mysqli_query($sql);
+			mysql_query($sql);
 		}
 	}
 ?>

@@ -1,0 +1,25 @@
+{
+    "0": {
+        "jQuery17105769217616881293": 130
+    },
+    "length": 1,
+    "context": {
+        "location": {
+            "ancestorOrigins": {},
+            "href": "https://localhost/3d_floor/index.php",
+            "origin": "https://localhost",
+            "protocol": "https:",
+            "host": "localhost",
+            "hostname": "localhost",
+            "port": "",
+            "pathname": "/3d_floor/index.php",
+            "search": "",
+            "hash": ""
+        },
+        "form": {
+            "0": {}
+        },
+        "jQuery17105769217616881293": 85
+    },
+    "selector": "#first_upload_file"
+}

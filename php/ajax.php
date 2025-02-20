@@ -35,40 +35,63 @@
 			$dir 		= $data_arr[4];
 			$mtls 		= explode(";",$data_arr[7]);
 
+			echo "<pre>";
+			var_dump($_POST['data']);
+			echo "</pre>"
+
 			if(file_exists("../objs/".$dir))
 			{
 				echo "{mode:'error',msg:'The name is already exist, Please input another name!'}";
 				return;
 			}
 
-			$sql  = "INSERT INTO objects SET ";
-			$sql .= " user_id='".$uid."'";
-			$sql .= ", thumb_img='".$data_arr[0]."'";
-			$sql .= ", two_obj='".$data_arr[1]."'";
-			$sql .= ", three_obj='".$data_arr[2]."'";
-			$sql .= ", three_mtl='".$data_arr[3]."'";
-			$sql .= ", name='".$data_arr[4]."'";
-			$sql .= ", size='".$data_arr[5].",".$data_arr[6]."'";
 
-			$db->run_sql($sql);
+			$dbhost = 'localhost';
+			$dbname = 'floor';
+			$username = 'root';
+			$password = '';
 
-			mkdir("../objs/".$dir);
+			$conn = new mysqli($dbhost, $username, $password, $dbname);
+
+			echo $data_arr[0]
+
+			// $sql = "INSERT INTO users (user_id, thumb_img, two_obj,three_obj, three_mtl, name, size)
+			// VALUES ($uid, $data_arr[0], $data_arr[1], $data_arr[2],$data_arr[3], $data_arr[4], $data_arr[5].$data_arr[6])";
+
+			// $conn->query($sql)
+
+			// outUV_trunk.jpg,outUV_trunk_bump.jpg,7m_WASHINGTONIA PALM_tree.obj,7m_WASHINGTONIA PALM_tree.mtl,WASHINGTONIA PALM LEAF.jpg,BNB,5,5
+
+			// $sql  = "INSERT INTO objects SET ";
+			// $sql .= " user_id='".$uid."'";
+			// $sql .= ", thumb_img='".$data_arr[0]."'";
+			// $sql .= ", two_obj='".$data_arr[1]."'";
+			// $sql .= ", three_obj='".$data_arr[2]."'";
+			// $sql .= ", three_mtl='".$data_arr[3]."'";
+			// $sql .= ", name='".$data_arr[4]."'";
+			// $sql .= ", size='".$data_arr[5].",".$data_arr[6]."'";
+
+
+
+			// $db->run_sql($sql);
+
+			// mkdir("../objs/".$dir);
 			
-			rename("../tmp/".$data_arr[0],"../objs/".$dir."/".$data_arr[0]);
-			rename("../tmp/".$data_arr[1],"../objs/".$dir."/".$data_arr[1]);
-			rename("../tmp/".$data_arr[2],"../objs/".$dir."/".$data_arr[2]);
-			rename("../tmp/".$data_arr[3],"../objs/".$dir."/".$data_arr[3]);
+			// rename("../tmp/".$data_arr[0],"../objs/".$dir."/".$data_arr[0]);
+			// rename("../tmp/".$data_arr[1],"../objs/".$dir."/".$data_arr[1]);
+			// rename("../tmp/".$data_arr[2],"../objs/".$dir."/".$data_arr[2]);
+			// rename("../tmp/".$data_arr[3],"../objs/".$dir."/".$data_arr[3]);
 
-			for($i = 0; $i < count($mtls); $i++)		
-			{
-				if($mtls[$i] == "") 
-					continue;
+			// for($i = 0; $i < count($mtls); $i++)		
+			// {
+			// 	if($mtls[$i] == "") 
+			// 		continue;
 
-				rename("../tmp/".$mtls[$i],"../objs/".$dir."/".$mtls[$i]);
-			}
+			// 	rename("../tmp/".$mtls[$i],"../objs/".$dir."/".$mtls[$i]);
+			// }
 
-			echo "{mode:'success',msg:'".mysql_insert_id()."'}";
-			break;
+			// echo "{mode:'success',msg:'".mysql_insert_id()."'}";
+			// break;
 
 		case "get_projectlist":
 
