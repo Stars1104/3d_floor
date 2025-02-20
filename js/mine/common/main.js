@@ -102,12 +102,13 @@ var initEnv			= function()
 		{
 			url: url,
 			dataType: 'json',
-			done: function (e, data)
+			done: function (data)
 			{
+				console.log(`😎😎😎${JSON.stringify(data)}`)
 				var obj = this;
 
-			    $.each(data.result.files, function (index, file)
-			    {
+				$.each(data.result.files, function (file)
+				{
 			    	if($(obj).parent().find(".files").find("p").length > 0)
 			    	{
 			    		var file_names = $(obj).parent().find(".files").children("p").html();
@@ -122,7 +123,7 @@ var initEnv			= function()
 
 			    $(this).parent().find('.progress').css('display','none');
 			},	
-			progressall: function (e, data)
+			progressall: function (data)
 			{
 				var progress = parseInt(data.loaded / data.total * 100, 10);
 

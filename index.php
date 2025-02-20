@@ -34,31 +34,31 @@
 		foreach($info as $eachInfo)
         {
             $thumb_path = "objs/".$eachInfo->name."/";
-			$obj_html .= '<li info="'.$eachInfo->id.'" tool="image" twod="'.$eachInfo->two_obj.'" title="'.$eachInfo->descr.'" thrd="'.$eachInfo->three_obj.'" size="'.$eachInfo->size.'">';
+			$obj_html .= '<li name="'.$eachInfo->name.'" info="'.$eachInfo->id.'" tool="image" twod="'.$eachInfo->two_obj.'" title="'.$eachInfo->descr.'" thrd="'.$eachInfo->three_obj.'" size="'.$eachInfo->size.'">';
 			$obj_html .= '<img src="'.$thumb_path.$eachInfo->thumb_img.'" /></li>';
 
-            // array_push($my_objs, $eachInfo->name);
+            array_push($my_objs, $eachInfo->name);
 		}
 	}
 
-    $all_obj    = $db->db_select("objects",array("*"),"WHERE user_id <> '".$_SESSION['User']['ID']."'");
-    $all_html   = "";
+    // $all_obj    = $db->db_select("objects",array("*"));
+    // $all_html   = "";
 
-    if($all_obj && count($all_obj)>0)
-    {
-        foreach($all_obj as $eachInfo)
-        {
-            // $thumb_path = "objs/".$eachInfo->name."/";
+    // if($all_obj && count($all_obj)>0)
+    // {
+    //     foreach($all_obj as $eachInfo)
+    //     {
+    //         $thumb_path = "objs/".$eachInfo->name."/";
 
-            // if(in_array($eachInfo->name, $my_objs)) continue;
+    //         if(in_array($eachInfo->name, $my_objs)) continue;
 
-            $all_html .= '<tr>';
-            $all_html .= '<td><input type="checkbox" info="'.$eachInfo->id.'"></td>';
-            // $all_html .= '<td>'.$eachInfo->name.'</td>';
-            $all_html .= '<td><img src="objs/black_square_table/'.$eachInfo->thumb_img.'" /></td>';
-            $all_html .= '</tr>';
-        }
-    }
+    //         $all_html .= '<tr>';
+    //         // $all_html .= '<td><input type="checkbox" info="'.$eachInfo->id.'"></td>';
+    //         // $all_html .= '<td>'.$eachInfo->name.'</td>';
+    //         // $all_html .= '<td><img src="'.$thumb_path.$eachInfo->thumb_img.'" /></td>';
+    //         $all_html .= '</tr>';
+    //     }
+    // }
 
 ?>
 
