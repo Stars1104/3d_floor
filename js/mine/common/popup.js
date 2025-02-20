@@ -193,6 +193,7 @@ var popupObj = function () {
 				if (fileInput2 == 'squire table with White map cover 2M with 12 chairs.obj') filePath = 'mass_square_table';
 				if (fileInput2 == 'TableSq_2_4m_black_noMap.obj') filePath = 'black_square_table';
 				if (fileInput2 == 'Table_01.obj') filePath = 'white_round_table';
+				if (fileInput2 == 'Flower_Vas_opt.obj') filePath = 'giryong_test';
 				if (fileInput2 == '7m_WASHINGTONIA PALM_tree.obj') filePath = 'Washington_tree';
 
 				var html = "";
@@ -245,7 +246,6 @@ var popupObj = function () {
 						data: ({ mode: 'create_object', data: html }),
 						cache: false,
 						success: function (result) {
-							console.log(`😂😂😂${JSON.stringify(result)}`)
 							var ret = JSON.parse(result);
 
 							if (ret.mode == "error") {
