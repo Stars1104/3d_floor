@@ -31,7 +31,7 @@ CREATE TABLE `objects` (
   `size` varchar(20) NOT NULL,
   `descr` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 /*Data for the table `objects` */
 
@@ -40,7 +40,10 @@ insert  into `objects`(`id`,`name`,`user_id`,`two_obj`,`three_obj`,`three_mtl`,`
 (2,'white_round_table',1,'table_01 top.png','Table_01.obj','Table_3mwhite.mtl','table_01.jpg','2.4,2.4,0.5','Big Table'),
 (3,'black_square_table',1,'2_4m_SQ_table_black_noMap.png','TableSq_2_4m_black_noMap.obj','TableSq_2_4m_black_noMap.mtl','TableSq_2_4m_Black_noMap.jpeg','2.4,2.4,1.5','2.4 Square Table'),
 (4,'mass_square_table',1,'TableSq_2m_white_12Chairs.png','squire table with White map cover 2M with 12 chairs.obj','squire table with White map cover 2M with 12 chairs.mtl','squire table with White map cover 2M with 12 chairs.jpg','3,3,0.5','2m Sqaure Table'),
-(5,'mass_round_table',1,'rounded table with white map cover 2M with 11 chairs.png','rounded table with white map cover 2M with 11 chairs.obj','rounded table with white map cover 2M with 12 chairs.mtl','rounded table with white map cover 2M with 11 chairs.jpeg','3,3,0.5','Rounded Table');
+(5,'mass_round_table',1,'rounded table with white map cover 2M with 11 chairs.png','rounded table with white map cover 2M with 11 chairs.obj','rounded table with white map cover 2M with 12 chairs.mtl','rounded table with white map cover 2M with 11 chairs.jpeg','3,3,0.5','Rounded Table'),
+(24,'Washington_tree',1,'WASHINGTONIA PALM LEAF_alpha.jpg','7m_WASHINGTONIA PALM_tree.obj','7m_WASHINGTONIA PALM_tree.mtl','WASHINGTONIA PALM_tree.jpeg','22,22',''),
+(28,'mass_square_table',1,'TableSq_2m_white_12Chairs.png','squire table with White map cover 2M with 12 chairs.obj','squire table with White map cover 2M with 12 chairs.mtl','squire table with White map cover 2M with 12 chairs.jpg','0.9,0.9',''),
+(29,'white_simple_chair',1,'Chair with cover white map.png','Chir_whiteMap.obj','Chir_whiteMap.mtl','White_chir.jpeg','0.3,3','');
 
 /*Table structure for table `tbl_project` */
 
