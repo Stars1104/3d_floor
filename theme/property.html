@@ -1,113 +1,189 @@
 <table id="floor_prop">
     <tr>
         <td colspan=2>
-            <p>Floor Scale</p>
+            <div id="floor_scale_header">
+                <p>Floor Scale</p>
+                <p id="percent">20%</p>
+            </div>
             <div id="size_slider">
-                <img src="img/zoom-out.png" id="slider_dec"/>
                 <div id="slider_body"></div>
-                <img src="img/zoom-in.png"  id="slider_inc"/>
             </div>
         </td>
     </tr>
     <tr>
         <td colspan=2>
-            <p>Floor Grid Size</p>
-            <img src="img/grid-icon.png" id="btn_grid" class="sel">
+            <div id="floor_grid_header">
+                <p>Floor Grid Size</p>
+                <p id="grid_percent">20%</p>
+            </div>
             <dd id="grid_slider"></dd>
         </td>
     </tr>
-    <tr><td colspan="2" class="split_line"></td></tr>
     <tr>
-        <td>
-            <p>Width(m):</p>
-            <dd>
-                <dl><input type="text" class="small" id="txt_fwidth"></dl>
-                <dl><p class="btn_up"></p><p class="btn_down"></p></dl>
-            </dd>
-        </td>
-        <td>
-            <p>Depth(m):</p>
-            <dd>
-                <dl><input type="text" class="small" id="txt_fdepth"></dl>
-                <dl><p class="btn_up"></p><p class="btn_down"></p></dl>
-            </dd>
-        </td>
+        <td colspan="2" class="split_line"></td>
     </tr>
-    <tr><td colspan="2" class="split_line"></td></tr>
-    <tr>
-        <td colspan=2>
-            <p>Background Color: </p>
-            <img src="img/art-palette.png" class="f_l">
-            <input type="text" class="large color_picker" id="txt_fbgcolor" readonly>
+    <tr style="width: 100%; display: flex; flex-direction: column; margin-top: 30px;">
+        <td style="width: 100%; display: flex; justify-content: space-between;">
+            <div style="width: 40%;">
+                <p>Width(m):</p>
+                <dd>
+                    <dl><input type="text" class="small" id="txt_fwidth"></dl>
+                    <dl>
+                        <p class="btn_up"></p>
+                        <p class="btn_down"></p>
+                    </dl>
+                </dd>
+            </div>
+            <div
+                style="width: 60%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 25px;">
+                <div style="width: 100%; display: flex; justify-content: space-between;">
+                    <span>0</span>
+                    <span id="gridValue">16</span>
+                </div>
+                <div class="width-wrapper">
+                    <input type="range" min="10" max="100" value="16" class="slider" id="gridSlider"
+                        aria-labelledby="gridValue">
+                </div>
+            </div>
         </td>
+        <td style="width: 100%; display: flex; justify-content: space-between;">
+            <div style="width: 40%;">
+                <p>Depth(m):</p>
+                <dd>
+                    <dl><input type="text" class="small" id="txt_fdepth"></dl>
+                    <dl>
+                        <p class="btn_up"></p>
+                        <p class="btn_down"></p>
+                    </dl>
+                </dd>
+            </div>
+            <div
+                style="width: 60%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 25px;">
+                <div style="width: 100%; display: flex; justify-content: space-between;">
+                    <span>0</span>
+                    <span id="depthValue">12</span>
+                </div>
+                <div class="width-wrapper">
+                    <input type="range" min="10" max="100" value="12" class="slider" id="depthSlider"
+                        aria-labelledby="depthValue">
+                </div>
+            </div>
     </tr>
     <tr>
-        <td colspan=2>
-            <p>Background Image: </p>
-            <img src="img/art-palette.png" class="f_l">
-            <input type="text" class="color_picker" id="txt_fbgimage" readonly>
+        <td colspan="2" class="split_line"></td>
+    </tr>
+    <tr style="display: flex;flex-direction: column;gap: 20px;margin-top: 30px;">
+        <td class="background-color">
+            <span>Back ground color</span>
+            <div id="color_box">
+                <div id="color" colspan=2>
+                    <input type="text" class="large color_picker" id="bg_color" readonly>
+                    <span id="colorValue">#191b1f</span>
+                </div>
+                <div id="edit">
+                    <img src="./img2/new/icon28.png" id="txt_fbgcolor" style="background-color: transparent;" alt="">
+                </div>
+                <div id="color_percent">
+                    <span>100%</span>
+                </div>
+            </div>
+        </td>
+        <td class="background-color">
+            <span>Back ground image</span>
+            <div id="color_box">
+                <div id="color" colspan=2 style="width: 75%; display: flex; justify-content: flex-start;">
+                    <input type="text" class="color_picker" id="txt_fbgimage"
+                        style="margin-left: 10px; background-image: url('./img2/new/hq720.png'); background-size: 100% 100%; background-repeat: no-repeat;"
+                        readonly>
+                    <span id="colorValue">009757</span>
+                </div>
+                <div id="color_percent">
+                    <span>100%</span>
+                </div>
+            </div>
         </td>
     </tr>
 </table>
+
 <div class="clear_both"></div>
-<table id="obj_prop">
-    <tr>
-        <td colspan=2>
+
+<table id="obj_prop" style="margin-left: 15%">
+    <tr style="width: 100%;">
+        <td colspan=2 style="width: 100%;">
             <p>Object Description: </p>
-            <input type="text" class="large" id="txt_descr">
+            <input type="text" class="large" id="txt_descr" style="width: 93%;">
         </td>
     </tr>
-    <tr id="txt_prop">
-        <td colspan=2>
+    <tr id="txt_prop" style="width: 100%;">
+        <td colspan=2 style="width: 100%;">
             <p>Text: </p>
-            <input type="text" class="large" id="txt_txtval">
+            <input type="text" class="large" id="txt_txtval" style="width: 93%;">
         </td>
     </tr>
-    <tr><td colspan="2" class="split_line"></td></tr>
-    <tr>
-        <td>
+    <tr style="width: 100%;">
+        <td colspan="2" style="width: 100%;" class="split_line"></td>
+    </tr>
+    <tr style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <td style="width: 50%;">
             <p>Width(m):</p>
             <dd>
                 <dl><input type="text" class="small" id="txt_width"></dl>
-                <dl><p class="btn_up"></p><p class="btn_down"></p></dl>
+                <dl>
+                    <p class="btn_up"></p>
+                    <p class="btn_down"></p>
+                </dl>
             </dd>
         </td>
-        <td>
+        <td style="width: 50%;">
             <p>Depth(m):</p>
             <dd>
                 <dl><input type="text" class="small" id="txt_depth"></dl>
-                <dl><p class="btn_up"></p><p class="btn_down"></p></dl>
+                <dl>
+                    <p class="btn_up"></p>
+                    <p class="btn_down"></p>
+                </dl>
             </dd>
         </td>
     </tr>
-    <tr>
-        <td>
+    <tr style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <td style="width: 50%;">
             <p>Height(m):</p>
             <dd>
                 <dl><input type="text" class="small" id="txt_height"></dl>
-                <dl><p class="btn_up"></p><p class="btn_down"></p></dl>
+                <dl>
+                    <p class="btn_up"></p>
+                    <p class="btn_down"></p>
+                </dl>
             </dd>
         </td>
-        <td>
+        <td style="width: 50%;">
             <p>Angle:</p>
             <dd>
                 <dl><input type="text" class="small" id="txt_angle"></dl>
-                <dl><p class="btn_up"></p><p class="btn_down"></p></dl>
+                <dl>
+                    <p class="btn_up"></p>
+                    <p class="btn_down"></p>
+                </dl>
             </dd>
         </td>
     </tr>
-    <tr>
-        <td>
+    <tr style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <td style="width: 50%;">
             <p>Number:</p>
             <dd>
                 <dl><input type="text" class="small" id="txt_number"></dl>
-                <dl><p class="btn_up"></p><p class="btn_down"></p></dl>
+                <dl>
+                    <p class="btn_up"></p>
+                    <p class="btn_down"></p>
+                </dl>
             </dd>
         </td>
         <td>&nbsp;</td>
     </tr>
 
-    <tr><td colspan="2" class="split_line"></td></tr>
+    <tr>
+        <td colspan="2" class="split_line"></td>
+    </tr>
     <tr>
         <td colspan=2>
             <p>Background Color: </p>

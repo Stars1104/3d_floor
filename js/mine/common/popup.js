@@ -236,7 +236,7 @@ var popupObj = function () {
 					return;
 				}
 
-
+				console.log(`html ---------------- ${html}`)
 
 				html += mtl
 				$.ajax(
@@ -246,14 +246,15 @@ var popupObj = function () {
 						data: ({ mode: 'create_object', data: html }),
 						cache: false,
 						success: function (result) {
-							var ret = JSON.parse(result);
+							console.log(JSON.stringify(result))
+							// var ret = JSON.parse(result);
 
-							if (ret.mode == "error") {
-								alert(ret.msg);
-							}
-							else {
+							// if (ret.mode == "error") {
+							// 	alert(ret.msg);
+							// }
+							// else {
 								window.location.href = "index.php";
-							}
+							// }
 						}
 					});
 			}

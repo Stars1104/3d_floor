@@ -1,7 +1,7 @@
 <?php
 	include_once('php/db.php');
 	$mode 	= $_POST['mode'];
-	$db 	= new DBAccess();
+	// $db 	= new DBAccess();
 	$uid 	= $_SESSION['User']['ID'];
 	// $max_countRes = $db->get_info_arr("users","UserId='".$uid."'");
 	switch ($mode)
@@ -69,7 +69,6 @@
 			// 	return;
 			// }
 			// map.png,White_chir.jpeg,Chir_whiteMap.obj,Chir_whiteMap.mtl,asdfasf,4,4
-
 
 			$dbhost = 'localhost';
 			$dbname = 'floor';

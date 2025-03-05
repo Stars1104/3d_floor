@@ -10,7 +10,7 @@
 		
 		function DBAccess()
 		{
-			$this->link = mysql_connect(IP_ADDR,USER_NAME,USER_PASS);
+			// $this->link = mysql_connect(IP_ADDR,USER_NAME,USER_PASS);
 
 			mysql_select_db(DB_NAME,$this->link);
 		}

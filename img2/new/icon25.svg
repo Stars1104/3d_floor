@@ -1,0 +1,11 @@
+<svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect x="2.50439" y="16.6133" width="2.29321" height="2.29321" fill="url(#pattern0_40_1178)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.19531H0.133301L0.155912 3.0395L0.155979 3.03981H15.977L15.9771 3.0395L16 1.19531ZM15.5888 4.884H0.544228L3.45603 18.7151H12.677L15.5888 4.884Z" fill="#ffffff"/>
+<rect x="5.27539" y="0.273926" width="5.63748" height="1.81546" fill="#ffffff"/>
+<defs>
+<pattern id="pattern0_40_1178" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_40_1178" transform="scale(0.0416667)"/>
+</pattern>
+<image id="image0_40_1178" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAApklEQVR4nOXQMQ4BURSF4T+htYRZBCV7mCinFDWNhD1QsoexD8NCaEmmJDEJzSuU99wbBfMnr3nJO1/yoC0tgBp4pVOnO7nqY8R7qm8DB/6+XeB7thZgFQCWFqAIAIUFGAWAoQXIAkBmATrA0zHeAF2MXRzAGaGTAzgqwN4BlAqwcQBrBZg7gJkCjB1ArgADB9BXgB7wEMbv6Y3UFLgZxq/ARB3/nd5G6fCJTgW3rQAAAABJRU5ErkJggg=="/>
+</defs>
+</svg>
