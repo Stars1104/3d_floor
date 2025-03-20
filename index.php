@@ -1,12 +1,6 @@
 <?php
 error_reporting(E_ALL);
 
-// ini_set('max_execution_time', 18000);
-// ini_set("memory_limit","202M");
-// ini_set("time_limit","5555");
-// ini_set("post_max_size","2001M");
-// ini_set("upload_max_filesize","2000M");
-
 session_start();
 
 include_once(__DIR__ . "/php/config.php");
@@ -19,10 +13,6 @@ define("DB_CHARSET", "utf8");
 
 $db = new dbClass();
 
-
-// $_SESSION['User']['ID'] = 1;
-
-// $info = $db->db_select("objects",array("*"),"WHERE user_id='".$_SESSION['User']['ID']."'");
 $info = $db->db_select("objects", array("*"));
 
 $thumb_path = "";
@@ -49,9 +39,6 @@ if ($all_obj && count($all_obj) > 0) {
         if (in_array($eachInfo->name, $my_objs)) continue;
 
         $all_html .= '<tr>';
-        // $all_html .= '<td><input type="checkbox" info="'.$eachInfo->id.'"></td>';
-        // $all_html .= '<td>'.$eachInfo->name.'</td>';
-        // $all_html .= '<td><img src="'.$thumb_path.$eachInfo->thumb_img.'" /></td>';
         $all_html .= '</tr>';
     }
 }
@@ -98,10 +85,18 @@ if ($all_obj && count($all_obj) > 0) {
 
 <body>
 
+    <style>
+        .header>a img {
+            width: 74px;
+            height: 26.31px;
+            margin-left: 29px;
+        }
+    </style>
+
     <div class="nabvar">
         <header class="header">
             <a href="<?= 'http://' . $_SERVER['HTTP_HOST'] ?>">
-                <img src="img/logo.png">
+                <img src="./img2/logo.png">
             </a>
         </header>
 
@@ -177,24 +172,17 @@ if ($all_obj && count($all_obj) > 0) {
                         <div class="control_item" tool="text"><img src="./img2/new/icon21.svg" alt=""></div>
                         <div class="control_item" tool="line"><img src="./img2/new/icon22.svg" alt=""></div>
                         <div class="control_item" id="shape">
-
                             <img class="retangular" src="./img2/new/icon23.svg" alt="">
-
                             <img class="circle" src="./img2/new/icon24.svg" alt="">
-
                             <dd id="all_shapes">
                                 <dl tool="rect"><img src="img/icon_rectangle.png"></dl>
-
                                 <dl tool="triangle"><img src="img/icon_triangle.png"></dl>
-
                                 <dl tool="circle"><img src="img/icon_circle.png"></dl>
-
                                 <dl tool="star"><img src="img/icon_star.png"></dl>
-
                                 <dl tool="ellipse"><img src="img/icon_ellipse.png"></dl>
                             </dd>
                         </div>
-                        <div class="control_item"><img src="./img2/new/icon25.svg" alt=""></div>
+                        <div class="control_item" id="remove_obj"><img src="./img2/new/icon25.svg" alt=""></div>
                     </div>
                     <div id="canvas_area">
                         <font color="red" id="font_protitle"></font>

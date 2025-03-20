@@ -91,7 +91,7 @@
 .overlay_add {
 	width: 100px;
 	height: 40px;
-	margin-top: 20px;
+	margin-top: -50px;
 	color: #191b1f;
 }
 
@@ -247,6 +247,11 @@
 #project_list {
 	width: 150px;
 	margin-left: 10px;
+	color: #191b1f !important;
+}
+
+#project_list>option {
+	color: #191b1f !important;
 }
 
 #sproject_list {

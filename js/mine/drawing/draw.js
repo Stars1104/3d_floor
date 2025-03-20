@@ -207,7 +207,7 @@ var drawObj = function () {
 			$("#txt_angle").val("0");
 
 			$("#obj_prop").css("display", "none");
-			$("#floor_prop").css("display", "block");
+			$("#floor_prop").css("display", "");
 		});
 
 		main.canvas.on("object:selected", function (options) {
@@ -215,7 +215,6 @@ var drawObj = function () {
 			var descr = obj._objects[0].get("descr");
 			var depth = obj._objects[0].get("depth");
 			var objNo = obj._objects[1].get("text");
-
 			var width = obj.getWidth();
 			var height = obj.getHeight();
 			var angle = obj.getAngle();
@@ -231,8 +230,7 @@ var drawObj = function () {
 				$("#txt_txtval").val(text);
 				$("#txt_prop").css({ "display": "table-row" });
 			}
-			else
-				$("#txt_prop").css("display", "none");
+			else $("#txt_prop").css("display", "none");
 
 			$("#txt_descr").val(descr);
 			$("#txt_depth").val(height / main.unit / main.prevScale);
@@ -241,9 +239,37 @@ var drawObj = function () {
 			$("#txt_angle").val(angle);
 			$("#txt_bgcolor").css("background-color", color);
 			$("#txt_number").val(objNo);
-			$("#obj_prop").css("display", "block");
+			$("#obj_prop").css("display", "flex");
 			$("#floor_prop").css("display", "none");
+
+			var Width = (width / main.unit / main.prevScale).toFixed(1);
+			var Height = (height / main.unit / main.prevScale).toFixed(1);
+			var Depth = (depth / main.unit).toFixed(1);
+
+			var Size = { width: Width, height: Height, depth: Depth };
+
+			localStorage.removeItem("Size");
+
+			localStorage.setItem("Size", JSON.stringify(Size));
 		});
+
+		main.canvas.on("object:modified", function (option) {
+			const obj = option.target;
+
+			var depth = obj._objects[0].get("depth");
+			var width = obj.getWidth();
+			var height = obj.getHeight();
+
+			var Width = (width / main.unit / main.prevScale).toFixed(1);
+			var Height = (height / main.unit / main.prevScale).toFixed(1);
+			var Depth = (depth / main.unit).toFixed(1);
+
+			var Size = { width: Width, height: Height, depth: Depth };
+
+			localStorage.removeItem("Size");
+
+			localStorage.setItem("Size", JSON.stringify(Size));
+		})
 	}
 
 	main.setObjProperty = function () {
@@ -361,6 +387,12 @@ var drawObj = function () {
 					main.addObject(tool, left, top, twod, size, thrd, mtl, "none", 0, 0, 0, "", "", dir);
 				}
 			});
+	}
+
+	main.RemoveOBJ = function () {
+		var active_obj = main.canvas.getActiveObject();
+		main.canvas.remove(active_obj);
+		main.canvas.renderAll();
 	}
 
 	main.keyEvent = function () {
@@ -774,68 +806,74 @@ var drawObj = function () {
 				break;
 
 			case "image":
-
 				var url = "objs/" + obj_dir + "/" + twod;
 				var obj3d = thrd;
 
-				var imgObj = fabric.Image.fromURL(url, function (img) {
-					if (effect_color && effect_color != "none") {
+				fabric.Image.fromURL(url, function (img) {
+					img.set({
+						width: sArr[0] * main.unit,
+						height: sArr[1] * main.unit,
+					});
+
+					if (effect_color && effect_color !== "none") {
 						img.filters.push(new fabric.Image.filters.Tint({
 							color: color,
 							opacity: 0.6
 						}));
 
-						img.applyFilters(main.canvas.renderAll.bind(main.canvas));
-						img.filters.length = 0;
+						img.applyFilters();
 					}
 
-					var number = new fabric.Text(gnum,
-						{
+					img.clone(function (clonedImg) {
+						var number = new fabric.Text(gnum, {
 							type: 'number',
-							left: width / 2 - 5,
-							top: height / 2 - 15,
 							fill: nColor,
-							visible: visible,
-							fontSize: 20
+							fontSize: 20,
+							visible: visible
 						});
 
-					number.top = (height - number.height) / 2;
-					number.left = (width - number.width) / 2;
+						setTimeout(() => {
+							number.set({
+								left: (clonedImg.width - number.width) / 2,
+								top: (clonedImg.height - number.height) / 2
+							});
 
-					var object = img.set(
-						{
-							type: tool,
-							top: 0,
-							left: 0,
-							url: url,
-							twod: twod,
-							width: sArr[0] * main.unit,
-							height: sArr[1] * main.unit,
-							depth: sArr[2] * main.unit,
-							obj3d: obj3d,
-							mtl: mtl,
-							angle: 0,
-							gID: groupID,
-							size: size,
-							descr: descr,
-							fill: effect_color,
-							obj_dir: obj_dir,
-							backgroundColor: effect_color
-						});
+							var object = clonedImg.set({
+								type: tool,
+								left: 0,
+								top: 0,
+								url: url,
+								twod: twod,
+								width: sArr[0] * main.unit,
+								height: sArr[1] * main.unit,
+								depth: sArr[2] * main.unit,
+								obj3d: obj3d,
+								mtl: mtl,
+								angle: 0,
+								gID: groupID,
+								size: size,
+								descr: descr,
+								fill: effect_color,
+								obj_dir: obj_dir,
+								backgroundColor: effect_color
+							});
 
-					var group = new fabric.Group([object, number], {
-						type: "basic_group",
-						left: left,
-						top: top,
-						angle: 0,
-						scaleX: main.prevScale,
-						scaleY: main.prevScale
+							var group = new fabric.Group([object, number], {
+								type: "basic_group",
+								left: left,
+								top: top,
+								angle: 0,
+								scaleX: main.prevScale,
+								scaleY: main.prevScale
+							});
+
+							main.canvas.add(group);
+							rotateObject(group, angle);
+							main.canvas.renderAll();
+						}, 50);
 					});
-
-					main.canvas.add(group);
-					rotateObject(group, angle);
 				});
-				break;
+				break
 		}
 
 		main.getOrgPos = function (object) {
@@ -900,6 +938,10 @@ var drawObj = function () {
 				var group = main.canvas.getActiveObject();
 				var target = group._objects[0];
 				var gnum = group._objects[1].text;
+
+				const storedSize = JSON.parse(localStorage.getItem("Size") || "{}");
+
+				target.size = storedSize.width + "," + storedSize.height + "," + storedSize.depth;
 
 				main.addObject(target.type, group.left - 10, group.top - 10, target.twod, target.size, target.obj3d, target.mtl, target.fill, group.angle, target.gID, gnum, "", "", target.obj_dir);
 			}

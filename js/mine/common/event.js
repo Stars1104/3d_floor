@@ -116,10 +116,8 @@ var initEvent = function () {
 
 			switch (index) {
 				case 0:
-
 					break;
 				case 1:
-
 					break;
 				case 2:
 					$("#creat_project").children(".overlay_title").children("span").html("Create New Project");
@@ -127,6 +125,7 @@ var initEvent = function () {
 					$("#creat_project").css({ "display": "block" });
 					$("#overlay").css("display", "inline");
 					$("#over_overlay").fadeIn();
+
 					break;
 				case 3:
 					$(".popup").css({ "display": "none" });
@@ -141,22 +140,57 @@ var initEvent = function () {
 							data: ({ mode: 'get_projectlist' }),
 							cache: false,
 							success: function (result) {
-								$("#project_list").html(result);
+								var data = JSON.parse(result);
 
+								console.log(data);
+
+								localStorage.removeItem("saveData");
+								localStorage.setItem("saveData", JSON.stringify(data));
+
+								var temp = ``;
+
+								for (let i = 0; i < data.length; i++) {
+									temp += `<option value=${data[i].id} descr=${data[i].descr}>${data[i].title}</option>`;
+								}
+
+								$("#project_list").html(temp);
 								var descr = $("#project_list").children(":selected").attr("descr");
-
 								$("#view_pdescr").html(descr);
 							}
 						});
 					$("#btn_addprj").data("canv_data", main.drawObj);
 					break;
 				case 4:
-					$("#btn_addprj").data("canv_data", "");
-					$("#creat_project").children(".overlay_title").children("span").html("Save As Project");
-					$(".popup").css({ "display": "none" });
-					$("#creat_project").css({ "display": "block" });
-					$("#overlay").css("display", "inline");
-					$("#over_overlay").fadeIn();
+					var data = main.drawObj.canvasToJson();
+
+					if ($("#font_protitle").html() == "") {
+						$("#creat_project").children(".overlay_title").children("span").html("Save As Project");
+						$(".popup").css({ "display": "none" });
+						$("#creat_project").css({ "display": "block" });
+						$("#overlay").css("display", "inline");
+						$("#over_overlay").fadeIn();
+						$("#btn_addprj").data("canv_data", main.drawObj);
+
+						return;
+					}
+
+					var title = $("#project_title").val();
+					var descr = $("#project_descr").val();
+
+					$.ajax(
+						{
+							type: "POST",
+							url: "ajax.php",
+							data: ({ mode: 'update_project', title: title, descr: descr, proID: projectID, data: data }),
+							cache: false,
+							success: function (result) {
+								alert("Successfullyl Saved!");
+							}
+						});
+					break;
+				case 5:
+					main.drawObj.canvas.deactivateAll().renderAll();
+					window.open(main.drawObj.canvas.toDataURL('png'));
 					break;
 				case 6:
 					main.drawObj.removeOBJ();
@@ -174,7 +208,6 @@ var initEvent = function () {
 
 					var unit = main.drawObj.unit;
 					var fWidth = $("#txt_fwidth").val() * unit;
-					console.log(fWidth);
 					var fHeight = $("#txt_fdepth").val() * unit;
 					var rate = main.drawObj.prevScale;
 					var objJSON = main.drawObj.canvasToJson();
@@ -203,12 +236,13 @@ var initEvent = function () {
 		});
 
 		$("#export_3d").click(function () {
+			console.log(main.obj3D.renderer);
 			window.open(main.obj3D.renderer.domElement.toDataURL());
 		});
 
-		$("#txt_number").keyup(function () {
-
-		});
+		$("#remove_obj").click(function () {
+			main.drawObj.RemoveOBJ();
+		})
 	}
 }
 

@@ -268,12 +268,12 @@ input.small {
 }
 
 #canvas_area {
-	left: 483px;
-	top: 0;
+	z-index: 1;
 	width: 800px;
-	height: 590px;
+	height: 600px;
+	left: 300px;
+	top: 100px;
 	position: absolute;
-	z-index: 10;
 	border: 1px solid #32353C;
 	border-radius: 15px 15px 0px 0px;
 	overflow: hidden;
@@ -288,7 +288,7 @@ input.small {
 	padding: 5px;
 	background-color: #32353C;
 	color: white;
-	font-family: "system-ui";
+	font-family: "Comic Sans MS";
 }
 
 #canvas_area .canvas-container {
@@ -296,10 +296,13 @@ input.small {
 }
 
 #grid_bg {
+	border: 1px solid #ccc;
 	border-width: 1px 0 0 1px;
+	background-color: white;
 }
 
 #grid_bg div {
+	border: 1px solid #ccc;
 	border-width: 0 1px 1px 0;
 	float: left;
 }
@@ -315,7 +318,6 @@ input.small {
 }
 
 #recycle_area {
-	background: url("../img/recycle.png") no-repeat center center;
 	background-size: 90% auto;
 	width: 48px;
 	height: 48px;
@@ -345,9 +347,13 @@ input.small {
 	z-index: 50;
 	bottom: 47px;
 	position: fixed;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #right_area span {
+	width: 100%;
 	height: 48px;
 	margin: 0px;
 	font-size: 14px;
@@ -361,8 +367,8 @@ input.small {
 
 
 #right_area table {
-	width: 92%;
-	margin-left: 3%;
+	width: 100%;
+	padding: 0 10px;
 }
 
 #right_area table dd {
@@ -458,19 +464,31 @@ input.small {
 #right_area table .color_picker {
 	width: 40px;
 	height: 24px;
-	background-color: #191b1f;
+	background-color: white;
 	outline: none;
 	border: none;
+	margin-top: 3px;
 }
 
 #right_area table .split_line {
 	border-bottom: 2px solid #3D4041;
-	padding-top: 30px
+	padding-top: 30px;
+	width: 300px !important;
 }
 
 #right_area #obj_prop {
 	display: none;
-	width: 94%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+#obj_prop>tbody {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 #right_slider {
@@ -659,7 +677,7 @@ input.small {
 	left: 0;
 	top: 120px;
 	position: fixed;
-	z-index: 9999999;
+	z-index: 100;
 }
 
 #right_container {
@@ -686,7 +704,7 @@ input.small {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	z-index: -9999999;
+	z-index: 1;
 }
 
 .object {
@@ -784,7 +802,7 @@ input.small {
 	display: flex;
 	float: left;
 	overflow-y: auto;
-	position: relative;
+	/* position: relative; */
 	justify-content: flex-start;
 	align-items: center;
 }
@@ -811,6 +829,9 @@ input.small {
 #left_area .category ul li img {
 	width: 100px;
 	height: 90px;
+	position: absolute;
+	z-index: 1000;
+	cursor: grab;
 }
 
 .footer-content {
@@ -984,10 +1005,11 @@ input.small {
 	align-items: center;
 }
 
-.header>a img {
+.logo_style>img {
 	width: 74px;
 	height: 26.31px;
 	margin-left: 29px;
+	border: 1px solid red;
 }
 
 .background-color {
@@ -1013,13 +1035,13 @@ input.small {
 }
 
 #color_box {
-	width: 100%;
+	width: 95%;
 	height: 30px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	background-color: #32353C;
-	padding: 5px 0;
+	padding: 5px 5px;
 }
 
 #color {
@@ -1183,4 +1205,22 @@ input.small {
 
 #project_title {
 	color: black;
+}
+
+#obj_name {
+	color: #14161A !important;
+}
+
+#obj_width {
+	color: #14161A !important;
+}
+
+#obj_height {
+	color: #14161A !important;
+}
+
+#font_protitle {
+	position: absolute !important;
+	top: 5px;
+	left: 15px;
 }

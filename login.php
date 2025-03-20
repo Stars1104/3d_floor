@@ -1,34 +1,24 @@
 <?php
 include_once('includes/config_mssql.php');
+
+
 $loginpageJS_CSS_Source = 'http://' . $_SERVER['HTTP_HOST'] . '/my_eruit/';
-// if(IsLoggedIn()) {
-// @header('location:'.HTTP_PATH.'home');
-// }
-if ($lang == 'en') {
-    $cssSrc = 'ltr';
-} else {
-    $cssSrc = 'rtl';
+if (IsLoggedIn()) {
+    header('Location: ' . HTTP_PATH . 'home');
+    exit;
 }
 
-if (!empty($_POST)) {
-    
-    // $checkRecord = $db_MYSQL->db_select("users",array("*"),"WHERE Username='".sanitizepostdata($_POST['Username'])."' AND Password='".sanitizepostdata($_POST['Password'])."'");
-    // if($checkRecord && count($checkRecord)>0) {
-    // $_SESSION['User']['ID'] = $checkRecord[0]->UserId;
-    // $_SESSION['User']['Username'] = $checkRecord[0]->Username;
+$cssSrc = ($lang == 'en') ? 'ltr' : 'rtl';
 
-    if ($_POST['Username'] == 'admin' && $_POST['Password'] == 'eruit') {
-        $_SESSION['User']['ID'] = 1;
-        $_SESSION['User']['Username'] = `revenger`;
-
-        @header('location:' . './index.php');
-    }
-
-    // if($checkRecord[0]->ConnStr != "") {
-    // 	connectToDatabase($checkRecord[0]->ConnStr);
-    // }
-    // } 
-    else {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['Username'], $_POST['Password'])) {
+    if ($_POST['Username'] === 'admin' && $_POST['Password'] === 'eruit') {
+        $_SESSION['User'] = [
+            'ID' => 1,
+            'Username' => 'revenger'
+        ];
+        header('Location: index.php');
+        exit;
+    } else {
         addScriptForExec('$.fn.alertUser("Invalid Username or Password.");');
     }
 }
@@ -40,11 +30,11 @@ if (!empty($_POST)) {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <base href="<?= HTTP_PATH ?>">
     <title><?= PAGE_TITLE ?> :: LOGIN</title>
-    <link rel="stylesheet" href="<?= $loginpageJS_CSS_Source ?>css/<?= $cssSrc ?>.css">
+    <!-- <link rel="stylesheet" href="<?= $loginpageJS_CSS_Source ?>css/<?= $cssSrc ?>.css">
     <link rel="stylesheet" href="./style/login.css">
     <script type="text/javascript" src="<?= $loginpageJS_CSS_Source ?>js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="<?= $loginpageJS_CSS_Source ?>js/noty/packaged/jquery.noty.packaged.js"></script>
-    <script type="text/javascript" src="<?= $loginpageJS_CSS_Source ?>js/formvalidator.js"></script>
+    <script type="text/javascript" src="<?= $loginpageJS_CSS_Source ?>js/formvalidator.js"></script> -->
 </head>
 
 <style>
@@ -72,7 +62,7 @@ if (!empty($_POST)) {
         align-items: center;
     }
 
-    .header>img {
+    .header>a img {
         width: 74px;
         height: 26.31px;
         margin-left: 29px;
@@ -198,7 +188,7 @@ if (!empty($_POST)) {
         accent-color: #32353C;
     }
 
-    .formArea>div label{
+    .formArea>div label {
         color: #dddddd;
         font-size: 20px;
         font-weight: 600;
@@ -217,7 +207,7 @@ if (!empty($_POST)) {
         cursor: pointer;
     }
 
-    .user_block>a{
+    .user_block>a {
         width: 772px;
         color: #2385FF;
         font-size: 20px;
@@ -244,7 +234,9 @@ if (!empty($_POST)) {
 <body>
     <div id="main" class="main">
         <header class="header">
-            <img src="./img2/logo.png" alt="">
+            <a class="logo_style" href="<?= 'http://' . $_SERVER['HTTP_HOST'] ?>">
+                <img src="./img2/logo.png">
+            </a>
         </header>
         <div class="container">
             <img src="./img2/background.jpg" class="main-bg" alt="">
@@ -259,7 +251,7 @@ if (!empty($_POST)) {
                 <span>Sign up for Eruit</span>
             </div>
             <div class="user_details">
-                <form name="loginForm" class="formArea" id="loginFormID" action="<?= $CURRENT_URL ?>" method="post">
+                <form name="loginForm" class="formArea" id="loginFormID" method="post">
                     <label for="username" class="username">USERNAME</label>
                     <input name="Username" type="text" class="textbox required" value="">
                     <label for="password" class="password">PASSWORD</label>

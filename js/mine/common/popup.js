@@ -16,6 +16,7 @@ var popupObj = function () {
 		});
 
 		$("#btn_select_mode").click(function () {
+
 			var mode = $("#option_area").find(":checked").parents("li").index();
 
 			$("#option_area").css({ "display": "none" });
@@ -42,9 +43,21 @@ var popupObj = function () {
 			$(".preview_area").html("<img src='" + $("#img_url").val() + "'>");
 		});
 
-		$("#project_list").on("change", function () {
+		$("#project_list").on("change", function (e) {
 			var descr = $(this).children(":selected").attr("descr");
 			var update_time = $(this).children(":selected").attr("update");
+
+			var selectedData = new Array();
+			var Data = JSON.parse(localStorage.getItem("saveData"));
+
+			for (let i = 0; i < Data.length; i ++) {
+				if (Data[i].id === e.target.value) {
+					selectedData.push(Data[i]);
+				}
+			}
+
+			localStorage.removeItem("selectedData");
+			localStorage.setItem("selectedData", JSON.stringify(selectedData));
 
 			update_time = "(Last Updated : " + update_time + ")";
 
@@ -105,44 +118,66 @@ var popupObj = function () {
 				return;
 			}
 
-			if ($("#creat_project").children(".overlay_title").children("span").html() == "Create New Project")
+			if ($("#creat_project").children(".overlay_title").children("span").html() == "Create New Project") {
 				main.drawObj.canvas.clear().renderAll();
 
-			$.ajax(
-				{
-					type: "POST",
-					url: "ajax.php",
-					data: ({ mode: 'create_project', title: title, descr: descr, data: data }),
-					cache: false,
-					success: function (result) {
-						if (result == -1) {
-							alert("The project name you inputed already Exist!");
-							return;
+				$.ajax(
+					{
+						type: "POST",
+						url: "ajax.php",
+						data: ({ mode: 'create_project', title: title, descr: descr, data: data }),
+						cache: false,
+						success: function (result) {
+							if (result == "Project already exist!!!") {
+								alert("The project name you inputed already Exist!");
+								return;
+							}
+
+							projectID = result;
+
+							$("#overlay").fadeOut();
+							$("#over_overlay").css("display", "none");
+							$("#font_protitle").html(title);
+
+							alert("Successfullyl Saved!");
 						}
+					});
+			} else {
+				$.ajax(
+					{
+						type: "POST",
+						url: "ajax.php",
+						data: ({ mode: 'update_project', title: title, descr: descr, proID: projectID, data: data }),
+						cache: false,
+						success: function (result) {
 
-						projectID = result;
+							if (result == "Project already exist!!!") {
+								alert("Project already exist!!!");
+								return;
+							}
 
-						$("#overlay").fadeOut();
-						$("#over_overlay").css("display", "none");
-						$("#font_protitle").html(title);
+							$("#overlay").fadeOut();
+							$("#over_overlay").css("display", "none");
+							$("#font_protitle").html(title);
 
-						alert("Successfullyl Saved!");
-					}
-				});
+							alert("Successfullyl Saved!");
+						}
+					});
+			}
 		});
 
 		$("#btn_selprj").click(function () {
-			var data = $("#project_list").children(":selected").attr("data");
+			var data = localStorage.getItem("selectedData");
 			var obj = [];
 			var title = $("#project_list").children(":selected").html();
 
-			if (data) obj = JSON.parse(data);
+			var newData = (JSON.parse(data))[0].data;
 
 			$("#font_protitle").html(title);
 
 			projectID = $("#project_list").children(":selected").val();
 
-			if (obj.length == 0) {
+			if (newData.length == 0) {
 				$("#overlay").fadeOut();
 				$("#over_overlay").css("display", "none");
 
@@ -151,7 +186,8 @@ var popupObj = function () {
 				return;
 			}
 
-			main.drawObj.jsonToCanvas(data);
+			main.drawObj.jsonToCanvas(newData);
+			main.drawObj.canvas.renderAll();
 
 			$("#overlay").fadeOut();
 			$("#over_overlay").css("display", "none");
@@ -164,7 +200,6 @@ var popupObj = function () {
 				$("#object_list").find(":checked").each(function () {
 					append_id += $(this).attr("info") + ",";
 				});
-
 
 				$.ajax(
 					{
@@ -181,12 +216,10 @@ var popupObj = function () {
 				var mtl = "";
 				let filePath = "";
 
-
 				let fileInput = document.getElementById('Thum_upload_file').files[0].name;
 				let fileInput1 = document.getElementById('2d_upload_file').files[0].name;
 				let fileInput2 = document.getElementById('3d_upload_file').files[0].name;
 				let fileInput3 = document.getElementById('3d_mat_upload_file').files[0].name;
-				// let fileInput4 = document.getElementById('3d_fix_upload_file').files[0].name;
 
 				if (fileInput2 == 'Chir_whiteMap.obj') filePath = 'white_simple_chair';
 				if (fileInput2 == 'rounded table with white map cover 2M with 11 chairs.obj') filePath = 'mass_round_table';
@@ -198,14 +231,6 @@ var popupObj = function () {
 
 				var html = "";
 				html += fileInput + ',' + fileInput1 + ',' + fileInput2 + ',' + fileInput3 + ',' + filePath + "," + $("#obj_width").val() + "," + $("#obj_height").val();
-
-				// 	html 	+= $("#add_object").find(".content_part:nth-child(2)").find("p").children("span").html() + ",";
-				// 	html 	+= $("#add_object").find(".content_part:nth-child(3)").find("p").children("span").html() + ",";
-				// 	html 	+= $("#add_object").find(".content_part:nth-child(4)").find("p").children("span").html() + ",";
-				// 	html 	+= $("#add_object").find(".content_part:nth-child(5)").find("p").children("span").html() + ",";
-				// 	html 	+= $("#obj_name").val() + ",";
-				// 	html 	+= $("#obj_width").val() + ",";
-				// 	html 	+= $("#obj_height").val() + ",";
 
 				$("#add_object").find(".content_part:nth-child(6)").find("p").children("span").each(function () {
 					mtl += $(this).html() + ";";
@@ -247,14 +272,7 @@ var popupObj = function () {
 						cache: false,
 						success: function (result) {
 							console.log(JSON.stringify(result))
-							// var ret = JSON.parse(result);
-
-							// if (ret.mode == "error") {
-							// 	alert(ret.msg);
-							// }
-							// else {
-								window.location.href = "index.php";
-							// }
+							window.location.href = "index.php";
 						}
 					});
 			}

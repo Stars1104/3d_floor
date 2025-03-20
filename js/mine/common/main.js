@@ -39,12 +39,13 @@ var initEnv = function () {
 		var footer_left = ($(window).width() - 601) / 2;
 
 		$("#canvas_area").css('left', 406);
-		$("#canvas_area").css('top', 0);
+		$("#canvas_area").css('top', 30);
 		$("#canvas_area").css("width", main.canvWidth * main.rate);
 		$("#canvas_area").css("height", main.canvHeight * main.rate + 35);
 
 		$("#grid_bg").css("width", main.canvWidth * main.rate);
 		$("#grid_bg").css("height", main.canvWidth * main.rate);
+		$('#grid_bg').css("position", "unset")
 
 		$("body").css("height", $(window).height());
 		$("#footer_label").css("left", footer_left);
@@ -173,6 +174,7 @@ var initEnv = function () {
 				drop: function (event, ui) {
 					var tool = $(ui.draggable).attr('tool');
 					var rm_id = -1;
+					alert(3);
 
 					if (tool != "image")
 						return;
@@ -241,7 +243,7 @@ var initEnv = function () {
 				},
 				onChange: function (hsb, hex, rgb) {
 					$('#grid_bg').css('background-color', '#' + hex);
-					$('#bg_color').css('backgroundColor', '#' + hex);
+					$('#txt_fbgcolor').css('backgroundColor', '#' + hex);
 					document.getElementById("colorValue").innerText = hex;
 				}
 			});
@@ -305,7 +307,7 @@ var initEnv = function () {
 		$(".btn_down").click(function () {
 			var val = $(this).parents("dd").find(".small").val() * 1;
 			var e = jQuery.Event("keyup");
-			var dec = 0.1;
+			var dec = 1;
 
 			e.which = 40;
 
@@ -358,6 +360,7 @@ var initEnv = function () {
 			value: main.sliderVal,
 			change: function (event, ui) {
 				var rate = ui.value / 3;
+				document.getElementById("percent").innerText = rate.toFixed(1);
 				var bgSize = main.initGSize * rate;
 
 				main.sliderVal = ui.value;

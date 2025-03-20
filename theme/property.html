@@ -3,7 +3,7 @@
         <td colspan=2>
             <div id="floor_scale_header">
                 <p>Floor Scale</p>
-                <p id="percent">20%</p>
+                <p id="percent">1.0</p>
             </div>
             <div id="size_slider">
                 <div id="slider_body"></div>
@@ -14,7 +14,7 @@
         <td colspan=2>
             <div id="floor_grid_header">
                 <p>Floor Grid Size</p>
-                <p id="grid_percent">20%</p>
+                <p id="grid_percent">1.0</p>
             </div>
             <dd id="grid_slider"></dd>
         </td>
@@ -77,11 +77,11 @@
             <span>Back ground color</span>
             <div id="color_box">
                 <div id="color" colspan=2>
-                    <input type="text" class="large color_picker" id="bg_color" readonly>
+                    <input type="text" class="large color_picker" id="txt_fbgcolor" readonly>
                     <span id="colorValue">#191b1f</span>
                 </div>
                 <div id="edit">
-                    <img src="./img2/new/icon28.png" id="txt_fbgcolor" style="background-color: transparent;" alt="">
+                    <img src="./img2/new/icon28.png" id="txt_fbgcolor" style="background-color: #32353C;" alt="">
                 </div>
                 <div id="color_percent">
                     <span>100%</span>
@@ -107,24 +107,25 @@
 
 <div class="clear_both"></div>
 
-<table id="obj_prop" style="margin-left: 15%">
+<table id="obj_prop">
     <tr style="width: 100%;">
-        <td colspan=2 style="width: 100%;">
+        <td style="width: 100%; display: table;">
             <p>Object Description: </p>
-            <input type="text" class="large" id="txt_descr" style="width: 93%;">
+            <input type="text" class="large" id="txt_descr" style="width: 94%;">
         </td>
     </tr>
     <tr id="txt_prop" style="width: 100%;">
-        <td colspan=2 style="width: 100%;">
+        <td style="width: 100%;">
             <p>Text: </p>
-            <input type="text" class="large" id="txt_txtval" style="width: 93%;">
+            <input type="text" class="large" id="txt_txtval" style="width: 100%;">
         </td>
     </tr>
     <tr style="width: 100%;">
-        <td colspan="2" style="width: 100%;" class="split_line"></td>
+        <td style="width: 100%;" class="split_line"></td>
     </tr>
-    <tr style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
-        <td style="width: 50%;">
+    <tr style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 40px;">
+        <td
+            style="width: 50%; display: flex; flex-direction: column; justify-content: space-between; align-items: start;">
             <p>Width(m):</p>
             <dd>
                 <dl><input type="text" class="small" id="txt_width"></dl>
@@ -145,8 +146,9 @@
             </dd>
         </td>
     </tr>
-    <tr style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
-        <td style="width: 50%;">
+    <tr style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 40px">
+        <td
+            style="width: 50%; display: flex; flex-direction: column; justify-content: space-between; align-items: start;">
             <p>Height(m):</p>
             <dd>
                 <dl><input type="text" class="small" id="txt_height"></dl>
@@ -182,13 +184,15 @@
     </tr>
 
     <tr>
-        <td colspan="2" class="split_line"></td>
+        <td colspan=2 class="split_line"></td>
     </tr>
-    <tr>
-        <td colspan=2>
+    <tr style="width: 100%;">
+        <td style="width: 100%; display: flex; align-items: center; gap: 20px;">
             <p>Background Color: </p>
-            <img src="img/art-palette.png" class="f_l">
-            <input type="text" class="large color_picker" id="txt_bgcolor" readonly>
+            <div style="display: flex; gap: 15px;">
+                <img src="img/art-palette.png" class="f_l">
+                <input type="text" class="color_picker" id="txt_bgcolor" readonly>
+            </div>
         </td>
     </tr>
 </table>
